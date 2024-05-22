@@ -52,4 +52,29 @@ public class Visitor {
     public void displayDetails() {
         System.out.println(this.getNumber() + "\t" + this.getName() + "\t" + this.getAddress() + "\t" + getPostCode() + "\t" + this.getDateOfBirth().toString());
     }
+
+    /**
+     * This method is essential for hashsets !!!
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj){
+        boolean equal = false; //Local variable used to return whether the objects are considered equal
+
+        if (obj == this){ //If memory references of the two objects match, we consider them equal by default
+            equal = true;
+        }
+        else { //Memory references do not match
+            if (obj instanceof Visitor){ //If parameter object is an instance of the Visitor class
+                Visitor otherVisitor = (Visitor) obj; //cast the parameter object to an object of the Visitor class
+
+                if (otherVisitor.getNumber() == this.getNumber()){ //Compare the ID's
+                    equal = true; //return true if the ID's match
+                }
+            }
+        }
+
+        return equal;
+    }
 }
